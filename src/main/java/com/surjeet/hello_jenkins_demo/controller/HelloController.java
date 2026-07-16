@@ -8,7 +8,7 @@ public class HelloController {
 
     @GetMapping("/")
     public String hello() {
-        return "Hello from Jenkins + Docker + AWS";
+        return "Hello from Fully Automated CI/CD Pipeline!";
     }
 
 }
