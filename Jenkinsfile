@@ -38,23 +38,24 @@ pipeline {
             steps {
 
                 sh '''
-                    ssh -i /var/jenkins_home/hello-app-key.pem -o StrictHostKeyChecking=no ec2-user@13.127.185.68 << 'EOF'
+                ssh -i /var/jenkins_home/hello-app-key.pem \
+                -o StrictHostKeyChecking=no ec2-user@13.127.xxx.xxx << 'EOF'
 
-                    export AWS_PAGER=""
+                export AWS_PAGER=""
 
-                    aws ecr get-login-password --region ap-south-1 | sudo docker login --username AWS --password-stdin 323336951226.dkr.ecr.ap-south-1.amazonaws.com
+                aws ecr get-login-password --region ap-south-1 | sudo docker login --username AWS --password-stdin 323336951226.dkr.ecr.ap-south-1.amazonaws.com
 
-                    sudo docker pull 323336951226.dkr.ecr.ap-south-1.amazonaws.com/hello-app:latest
+                sudo docker pull 323336951226.dkr.ecr.ap-south-1.amazonaws.com/hello-app:latest
 
-                    sudo docker stop hello-app || true
+                sudo docker stop hello-app || true
 
-                    sudo docker rm hello-app || true
+                sudo docker rm hello-app || true
 
-                    sudo docker run -d \
-                        --name hello-app \
-                        --restart unless-stopped \
-                        -p 8081:8081 \
-                        323336951226.dkr.ecr.ap-south-1.amazonaws.com/hello-app:latest
+                sudo docker run -d \
+                    --name hello-app \
+                    --restart unless-stopped \
+                    -p 8081:8081 \
+                    323336951226.dkr.ecr.ap-south-1.amazonaws.com/hello-app:latest
 
                 EOF
                 '''
