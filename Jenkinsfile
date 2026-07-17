@@ -56,7 +56,7 @@ pipeline {
                         -p 8081:8081 \
                         323336951226.dkr.ecr.ap-south-1.amazonaws.com/hello-app:latest
 
-                    EOF
+                EOF
                 '''
             }
         }
