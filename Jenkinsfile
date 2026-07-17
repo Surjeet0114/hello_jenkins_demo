@@ -39,7 +39,7 @@ pipeline {
 
                 sh '''
                 ssh -i /var/jenkins_home/hello-app-key.pem \
-                -o StrictHostKeyChecking=no ec2-user@13.127.xxx.xxx << 'EOF'
+                -o StrictHostKeyChecking=no ec2-user@13.127.185.68 << 'EOF'
 
                 export AWS_PAGER=""
 
