@@ -20,8 +20,16 @@ pipeline {
         }
 
         stage('Push Docker Image to ECR') {
+
             steps {
-                echo 'Pushing Image to Amazon ECR...'
+
+                sh '''
+                    docker tag hello-app:latest 323336951226.dkr.ecr.ap-south-1.amazonaws.com/hello-app:latest
+
+                    export AWS_PAGER=""
+                    aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 323336951226.dkr.ecr.ap-south-1.amazonaws.com
+                    docker push 323336951226.dkr.ecr.ap-south-1.amazonaws.com/hello-app:latest
+                '''
             }
         }
 
