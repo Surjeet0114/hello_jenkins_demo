@@ -2,7 +2,6 @@ pipeline {
     agent any
     stages {
         stage('Checkout Code') {
-
             steps {
                 checkout scm
             }
@@ -16,7 +15,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                echo 'Building Docker Image...'
+                sh 'docker build -t hello-app:latest .'
             }
         }
 
